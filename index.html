@@ -1,13 +1,244 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ATLAS — Your Life, Explored</title><link rel="stylesheet" href="style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ATLAS — Your Life, Explored</title>
+<meta name="description" content="ATLAS turns the dates and places in your photos into a living globe, journeys rebuilt for you and a passport of original stamps — privately, on your iPhone. Made for iPhone Duo.">
+<meta name="theme-color" content="#03060D">
+<meta property="og:title" content="ATLAS — Your Life, Explored">
+<meta property="og:description" content="A living globe, your journeys rebuilt and a passport of stamps, from your photos — privately, on your iPhone.">
+<meta property="og:image" content="https://dorian-richard.github.io/atlas-app/img/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.css">
+</head>
 <body>
-<header><img src="icon.png" alt="ATLAS app icon"><div class="brand">ATLAS</div><h1>Your Life, Explored.</h1>
-<p>Every journey leaves a mark.</p></header>
-<main>
-<p>ATLAS turns the dates and places stored in your photos into a living globe, journeys rebuilt for you, and a passport of original stamps — computed privately, on your iPhone.</p>
-<div class="card"><strong>Private by design.</strong> Your photos are never uploaded or modified. No account, no ads, no tracking.</div>
-<p><a href="privacy.html">Privacy policy</a> · <a href="support.html">Support</a></p>
-</main>
-<footer>© 2026 Dorian Richard</footer>
-</body></html>
+
+<nav class="nav">
+  <a class="brand" href="#top"><img src="icon.png" alt=""><span>ATLAS</span></a>
+  <div class="nav-links">
+    <a href="#passport" data-i18n="nav.passport">Passport</a>
+    <a href="#features" data-i18n="nav.features">Features</a>
+    <a href="#duo">iPhone Duo</a>
+    <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="en">EN</button><button type="button" data-lang="fr">FR</button>
+  </div>
+</nav>
+
+<!-- Hero: the night, the globe -->
+<header class="hero" id="top">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="hero-copy reveal">
+      <p class="overline" data-i18n="hero.overline">Your life, explored</p>
+      <h1 data-i18n="hero.title">Every journey leaves a&nbsp;mark.</h1>
+      <p class="lede" data-i18n="hero.lede">ATLAS reads the dates and places in your photos and turns them into a living globe, journeys rebuilt for you and a passport of original stamps — privately, on your iPhone.</p>
+      <div class="cta">
+        <span class="store"><span class="store-small" data-i18n="cta.soon">Coming soon on the</span><span class="store-big">App Store</span></span>
+        <span class="price" data-i18n="cta.price">$2.99 · one purchase, no subscription, no ads</span>
+      </div>
+    </div>
+    <div class="globe-wrap reveal">
+      <canvas class="globe" aria-label="A globe with the countries of a demo atlas lit in gold" role="img"></canvas>
+      <div class="globe-tip" hidden></div>
+      <p class="globe-hint" data-i18n="hero.hint">Drag the globe — the gold countries are a demo atlas</p>
+    </div>
+  </div>
+  <a class="scroll-cue" href="#passport" aria-label="Scroll"><span></span></a>
+</header>
+
+<!-- Passport: press the stamps -->
+<section class="paper section" id="passport">
+  <div class="split">
+    <div class="copy reveal">
+      <p class="overline gold-deep" data-i18n="pass.overline">Passport of discoveries</p>
+      <h2 data-i18n="pass.title">A stamp for every country you’ve really explored.</h2>
+      <p data-i18n="pass.body">No check-ins, no lists to fill. ATLAS finds your countries in your photos — and you press each original stamp into your passport yourself.</p>
+      <button class="btn-gold" type="button" id="stampAll" data-i18n="pass.button">Press the stamps</button>
+    </div>
+    <div class="booklet reveal">
+      <div class="page">
+        <p class="page-label" data-i18n="pass.entries">Entries</p>
+        <div class="slots">
+          <button class="slot" type="button" data-stamp="iceland" aria-label="Iceland, 2016"><img src="img/stamp-iceland.webp" alt=""></button>
+          <button class="slot" type="button" data-stamp="italy" aria-label="Italy, 2017"><img src="img/stamp-italy.webp" alt=""></button>
+          <button class="slot" type="button" data-stamp="japan" aria-label="Japan, 2018"><img src="img/stamp-japan.webp" alt=""></button>
+          <button class="slot" type="button" data-stamp="peru" aria-label="Peru, 2019"><img src="img/stamp-peru.webp" alt=""></button>
+        </div>
+        <p class="page-number">— 1 —</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A little plane flies the route as you scroll -->
+<div class="route" aria-hidden="true">
+  <svg viewBox="0 0 1200 160" preserveAspectRatio="none"><path id="routePath" d="M40 140 Q600 -60 1160 140" fill="none"/></svg>
+  <div class="route-dots"></div>
+  <svg class="plane" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg>
+</div>
+
+<!-- Features: the iPhone follows the story -->
+<section class="night section" id="features">
+  <div class="section-head reveal">
+    <p class="overline" data-i18n="feat.overline">On your iPhone</p>
+    <h2 data-i18n="feat.title">Your photos already hold the map.</h2>
+  </div>
+  <div class="story">
+    <div class="phone-sticky">
+      <div class="iphone">
+        <div class="island"></div>
+        <img class="shot active" data-shot="world" src="img/iphone-world.webp" alt="ATLAS: the globe">
+        <img class="shot" data-shot="journey" src="img/iphone-journey.webp" alt="ATLAS: a journey" loading="lazy">
+        <img class="shot" data-shot="country" src="img/iphone-country.webp" alt="ATLAS: a country" loading="lazy">
+        <img class="shot" data-shot="timemachine" src="img/iphone-timemachine.webp" alt="ATLAS: Time Machine" loading="lazy">
+        <img class="shot" data-shot="messages" src="img/iphone-messages.webp" alt="ATLAS: Messages" loading="lazy">
+        <img class="shot" data-shot="passport" src="img/iphone-passport.webp" alt="ATLAS: the passport" loading="lazy">
+      </div>
+    </div>
+    <div class="chapters">
+      <article class="chapter" data-shot="world">
+        <span class="num">01</span>
+        <h3 data-i18n="f1.title">Your world, lit up.</h3>
+        <p data-i18n="f1.body">Every country you’ve explored glows in gold on a 3D globe. Turn it, zoom in, switch to the map or the fog of war — and watch it fill up trip after trip.</p>
+        <img class="inline-shot" src="img/iphone-world.webp" alt="" loading="lazy">
+      </article>
+      <article class="chapter" data-shot="journey">
+        <span class="num">02</span>
+        <h3 data-i18n="f2.title">Your trips, rebuilt for you.</h3>
+        <p data-i18n="f2.body">ATLAS groups your photos into journeys — dates, cities, monuments — and keeps everything editable. While you travel, the trip writes itself.</p>
+        <img class="inline-shot" src="img/iphone-journey.webp" alt="" loading="lazy">
+      </article>
+      <article class="chapter" data-shot="country">
+        <span class="num">03</span>
+        <h3 data-i18n="f3.title">Every country, in detail.</h3>
+        <p data-i18n="f3.body">Cities, photos, monuments, and the days you really spent there — country by country, city by city.</p>
+        <img class="inline-shot" src="img/iphone-country.webp" alt="" loading="lazy">
+      </article>
+      <article class="chapter" data-shot="timemachine">
+        <span class="num">04</span>
+        <h3 data-i18n="f4.title">Travel back in time.</h3>
+        <p data-i18n="f4.body">The Time Machine replays your life year by year as the globe lights up. Share the year that changed everything.</p>
+        <img class="inline-shot" src="img/iphone-timemachine.webp" alt="" loading="lazy">
+      </article>
+      <article class="chapter" data-shot="messages">
+        <span class="num">05</span>
+        <h3 data-i18n="f5.title">Leave messages in the world.</h3>
+        <p data-i18n="f5.body">Hide a text, a photo, a voice note or a video at a place. It opens only for the people you choose — once they’re there. Even years later.</p>
+        <img class="inline-shot" src="img/iphone-messages.webp" alt="" loading="lazy">
+      </article>
+      <article class="chapter" data-shot="passport">
+        <span class="num">06</span>
+        <h3 data-i18n="f6.title">A passport worth filling.</h3>
+        <p data-i18n="f6.body">Original stamps for every country, achievements earned from real discoveries, your travel DNA — never from daily streaks.</p>
+        <img class="inline-shot" src="img/iphone-passport.webp" alt="" loading="lazy">
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- iPhone Duo: fold, unfold -->
+<section class="duo section" id="duo">
+  <div class="section-head reveal">
+    <p class="overline" data-i18n="duo.overline">Made for iPhone Duo</p>
+    <h2 data-i18n="duo.title">Closed, it’s your passport. Open, it’s your atlas.</h2>
+    <p class="lede" data-i18n="duo.body">Closed, ATLAS shows your passport’s cover — or the globe, your choice. Unfold your iPhone: the cover turns over the hinge onto your atlas, the globe on the left page, the world of you on the right. Then turn the passport’s pages like a book.</p>
+  </div>
+
+  <div class="duo-controls reveal">
+    <div class="segmented" role="group" aria-label="iPhone Duo">
+      <button type="button" class="seg active" data-fold="closed" data-i18n="duo.closed">Closed</button>
+      <button type="button" class="seg" data-fold="open" data-i18n="duo.open">Open</button>
+    </div>
+  </div>
+
+  <div class="duo-stage reveal" data-state="closed">
+    <div class="duo-device">
+      <div class="duo-screen">
+        <img class="duo-open-img" src="img/duo-open-world.webp" alt="ATLAS on iPhone Duo, open">
+        <div class="duo-hinge" aria-hidden="true"></div>
+        <div class="duo-night" aria-hidden="true"></div>
+        <div class="duo-cover">
+          <div class="face front"><img class="duo-closed-img" src="img/duo-closed-cover.webp" alt="ATLAS on iPhone Duo, closed"></div>
+          <div class="face back" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="duo-caption reveal" aria-live="polite"></p>
+
+  <div class="thumbs" data-for="closed">
+    <button type="button" class="thumb active" data-img="duo-closed-cover" data-cap="cap.cover"><img src="img/duo-closed-cover.webp" alt="" loading="lazy"><span data-i18n="t.cover">Cover</span></button>
+    <button type="button" class="thumb" data-img="duo-closed-globe" data-cap="cap.globe"><img src="img/duo-closed-globe.webp" alt="" loading="lazy"><span data-i18n="t.globe">Globe</span></button>
+    <button type="button" class="thumb" data-img="duo-closed-book" data-cap="cap.book"><img src="img/duo-closed-book.webp" alt="" loading="lazy"><span data-i18n="t.book">Passport</span></button>
+    <button type="button" class="thumb" data-img="duo-closed-timemachine" data-cap="cap.tm"><img src="img/duo-closed-timemachine.webp" alt="" loading="lazy"><span>Time Machine</span></button>
+    <button type="button" class="thumb" data-img="duo-closed-launch" data-cap="cap.launch"><img src="img/duo-closed-launch.webp" alt="" loading="lazy"><span data-i18n="t.launch">Launch</span></button>
+  </div>
+  <div class="thumbs wide" data-for="open" hidden>
+    <button type="button" class="thumb active" data-img="duo-open-world" data-cap="cap.atlas"><img src="img/duo-open-world.webp" alt="" loading="lazy"><span data-i18n="t.atlas">Atlas</span></button>
+    <button type="button" class="thumb" data-img="duo-open-book" data-cap="cap.openbook"><img src="img/duo-open-book.webp" alt="" loading="lazy"><span data-i18n="t.book">Passport</span></button>
+    <button type="button" class="thumb" data-img="duo-open-passport" data-cap="cap.collection"><img src="img/duo-open-passport.webp" alt="" loading="lazy"><span data-i18n="t.collection">Collection</span></button>
+    <button type="button" class="thumb" data-img="duo-open-explore" data-cap="cap.explore"><img src="img/duo-open-explore.webp" alt="" loading="lazy"><span data-i18n="t.explore">Explore</span></button>
+    <button type="button" class="thumb" data-img="duo-open-journeys" data-cap="cap.journeys"><img src="img/duo-open-journeys.webp" alt="" loading="lazy"><span data-i18n="t.journeys">Journeys</span></button>
+  </div>
+</section>
+
+<!-- Privacy -->
+<section class="paper section" id="privacy">
+  <div class="section-head reveal">
+    <p class="overline gold-deep" data-i18n="priv.overline">Privacy first</p>
+    <h2 data-i18n="priv.title">Your memories stay yours.</h2>
+  </div>
+  <div class="cards">
+    <div class="card reveal"><svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><h3 data-i18n="p1.title">Analyzed on this iPhone</h3><p data-i18n="p1.body">Places, journeys and landscapes are worked out on your device.</p></div>
+    <div class="card reveal"><svg viewBox="0 0 24 24"><path d="M8 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5v-4a1.5 1.5 0 0 1 3 0V10m0-3a1.5 1.5 0 0 1 3 0v6.5a7 7 0 0 1-7 7h-.5a6 6 0 0 1-5-2.7L3.2 14a1.6 1.6 0 0 1 2.6-1.9L8 14.5"/></svg><h3 data-i18n="p2.title">You choose what ATLAS sees</h3><p data-i18n="p2.body">All your photos, a selection, or none at all — you can add journeys by hand.</p></div>
+    <div class="card reveal"><svg viewBox="0 0 24 24"><path d="M7 18a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 9.5a4 4 0 0 1 .5 8M3 3l18 18"/></svg><h3 data-i18n="p3.title">Never uploaded</h3><p data-i18n="p3.body">Your photo library never leaves your iPhone. No account needed, no ads, no tracking.</p></div>
+    <div class="card reveal"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4.5h6V7m-8 0 1 13h8l1-13"/></svg><h3 data-i18n="p4.title">Erase anytime</h3><p data-i18n="p4.body">Delete everything ATLAS created in one tap. Your photos are never modified.</p></div>
+  </div>
+  <p class="note reveal" data-i18n="priv.note">Messages is optional — the only part of ATLAS that uses a server, and only if you sign in. Read the <a href="privacy.html">privacy policy</a>.</p>
+</section>
+
+<!-- Last page: the cover, the plane -->
+<section class="finale" id="get">
+  <canvas class="stars" aria-hidden="true"></canvas>
+  <div class="finale-inner reveal">
+    <p class="wordmark">ATLAS</p>
+    <svg class="emblem" viewBox="0 0 140 140" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.6">
+        <circle cx="70" cy="70" r="48"/>
+        <ellipse cx="70" cy="70" rx="24" ry="48"/><ellipse cx="70" cy="70" rx="40" ry="48"/>
+        <path d="M22 70h96M27 46h86M27 94h86M70 6v16M70 118v16M6 70h16M118 70h16"/>
+      </g>
+    </svg>
+    <p class="passport-of" data-i18n="fin.label">Passport of discoveries</p>
+    <div class="loader" aria-hidden="true">
+      <svg viewBox="0 0 150 40"><path class="loader-route" d="M6 34 Q75 -14 144 34"/><circle cx="6" cy="34" r="2.5"/><circle cx="144" cy="34" r="2.5"/></svg>
+      <svg class="loader-plane" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0 0 11.5 2 1.5 1.5 0 0 0 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg>
+    </div>
+    <h2 data-i18n="fin.title">Your passport is waiting.</h2>
+    <div class="cta center">
+      <span class="store"><span class="store-small" data-i18n="cta.soon">Coming soon on the</span><span class="store-big">App Store</span></span>
+      <span class="price" data-i18n="cta.price">$2.99 · one purchase, no subscription, no ads</span>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <a href="privacy.html" data-i18n="foot.privacy">Privacy policy</a> · <a href="support.html">Support</a> · <span>© 2026 Dorian Richard</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="home.js"></script>
+</body>
+</html>
