@@ -11,7 +11,7 @@
     "hero.overline": "Votre vie, explorée",
     "hero.title": "Chaque voyage laisse une&nbsp;trace.",
     "hero.lede": "ATLAS lit les dates et les lieux de vos photos et en fait un globe vivant, des voyages reconstitués pour vous et un passeport de tampons originaux — en privé, sur votre iPhone.",
-    "cta.soon": "Bientôt sur l’", "cta.price": "2,99 € · un seul achat, sans abonnement ni pub",
+    "cta.soon": "Bientôt disponible sur l’", "cta.get": "Télécharger dans l’", "cta.price": "2,99 € · un seul achat, sans abonnement ni pub",
     "hero.hint": "Faites tourner le globe — les pays dorés sont un atlas de démo",
     "pass.overline": "Passeport des découvertes",
     "pass.title": "Un tampon pour chaque pays vraiment exploré.",
@@ -71,7 +71,7 @@
       "cap.journeys": "Tous vos voyages, année après année.",
     },
   };
-  const EN = {};
+  const EN = { "cta.get": "Download on the" };
   $$("[data-i18n]").forEach((el) => { EN[el.dataset.i18n] = el.innerHTML; });
   let lang = "en";
   try { lang = localStorage.getItem("atlas.lang") || ""; } catch {}
@@ -373,6 +373,24 @@
     }, { threshold: 0.6 }).observe(stage);
     return { caption };
   })();
+
+  // ---------- App Store: the badge becomes a link the day ATLAS is out (Apple's lookup, JSONP) ----------
+  const APP_URL = "https://apps.apple.com/app/id6823246669";
+  window.atlasLookup = (result) => {
+    if (!result || !result.resultCount) return;
+    $$(".store").forEach((badge) => {
+      const link = document.createElement("a");
+      link.className = "store"; link.href = APP_URL; link.rel = "noopener";
+      link.innerHTML = badge.innerHTML;
+      badge.replaceWith(link);
+    });
+    $$('.store-small[data-i18n="cta.soon"]').forEach((el) => { el.dataset.i18n = "cta.get"; });
+    applyLanguage(lang);
+  };
+  const lookup = document.createElement("script");
+  lookup.src = `https://itunes.apple.com/lookup?id=6823246669&country=${lang === "fr" ? "fr" : "us"}&callback=atlasLookup`;
+  lookup.async = true;
+  document.body.appendChild(lookup);
 
   applyLanguage(lang);
 })();

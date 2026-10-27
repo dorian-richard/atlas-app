@@ -81,6 +81,8 @@ p { margin: 0; }
 .cta.center { justify-content: center; }
 .store { display: inline-flex; flex-direction: column; line-height: 1.1; padding: 10px 22px 11px; border-radius: 14px;
   background: var(--gold-bright); color: var(--midnight); box-shadow: 0 10px 30px rgba(232, 207, 152, 0.18); }
+a.store { text-decoration: none; transition: transform .15s, box-shadow .15s; }
+a.store:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(232, 207, 152, 0.3); }
 .store-small { font-size: 11px; letter-spacing: 0.02em; opacity: 0.75; }
 .store-big { font: 600 21px var(--sans); letter-spacing: -0.01em; }
 .price { font-size: 14px; color: rgba(243, 238, 228, 0.62); }
