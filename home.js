@@ -43,7 +43,7 @@
     "p4.title": "Effaçable à tout moment", "p4.body": "Supprimez tout ce qu’ATLAS a créé en un geste. Vos photos ne sont jamais modifiées.",
     "priv.note": "Messages est optionnel — c’est la seule partie d’ATLAS qui utilise un serveur, et seulement si vous vous connectez. Lire la <a href=\"privacy.html#fr\">politique de confidentialité</a>.",
     "fin.label": "Passeport des découvertes", "fin.title": "Votre passeport vous attend.",
-    "foot.privacy": "Confidentialité",
+    "foot.privacy": "Confidentialité", "foot.with": "Créé avec", "foot.by": "par", "foot.in": "à Paris",
   };
   const CAPTIONS = {
     en: {

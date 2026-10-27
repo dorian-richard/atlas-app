@@ -236,3 +236,13 @@ p { margin: 0; }
   .scroll-cue span { animation: none; }
   .duo-device, .duo-cover, .face.back, .duo-night { transition-duration: .01s; transition-delay: 0s; }
 }
+
+/* Signature */
+.signature { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0 6px; margin-bottom: 10px; }
+.signature a { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+.signature a:hover { text-decoration: underline; }
+.signature .heart { fill: #E0675A; animation: beat 1.6s ease-in-out infinite; }
+.signature .linkedin { fill: currentColor; }
+.signature .flag { border-radius: 2px; box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.25); }
+@keyframes beat { 0%, 60%, 100% { transform: scale(1); } 15% { transform: scale(1.22); } 30% { transform: scale(0.96); } }
+@media (prefers-reduced-motion: reduce) { .signature .heart { animation: none; } }
